@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
 import re, sys, subprocess
+from time import sleep
 
 try:
     import requests
@@ -70,7 +71,7 @@ def grabGameId():
 
 ## BEGIN PROGRAM ##
 
-if sys.argv[1].lower() == 'mapleleafs' or sys.argv[1].lower()'maple_leafs':
+if sys.argv[1].lower() == 'mapleleafs' or sys.argv[1].lower() == 'maple_leafs':
     mascot = 'leafs'
 else:
     mascot = str(sys.argv[1].lower())
@@ -79,6 +80,7 @@ homeOrAway = None
 # Kill previous java instances
 
 subprocess.Popen(['sudo','pkill','java'], stdout=None, stderr=None)
+sleep(10)
 
 # Open NHLstream subreddit, search for team name (mascot), open link
 
