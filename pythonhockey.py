@@ -79,8 +79,8 @@ homeOrAway = None
 
 # Kill previous java instances
 
-subprocess.Popen(['sudo','pkill','java'], stdout=None, stderr=None)
-sleep(10)
+subprocess.call(['sudo','pkill','java'], stdout=None, stderr=None)
+#sleep(10)
 
 # Open NHLstream subreddit, search for team name (mascot), open link
 
