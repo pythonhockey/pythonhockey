@@ -70,7 +70,7 @@ def grabGameId():
 
 ## BEGIN PROGRAM ##
 
-if sys.argv[1].lower() == 'mapleleafs' or 'maple_leafs':
+if sys.argv[1].lower() == 'mapleleafs' or sys.argv[1].lower()'maple_leafs':
     mascot = 'leafs'
 else:
     mascot = str(sys.argv[1].lower())
@@ -100,9 +100,11 @@ gameThread = selectTeam(mascot)
 
 gameIdString = gameIdForFneulion()
 
+gameIdDigits = grabGameId()
+
 # Launch FNeulion
 
-streamUrl = subprocess.Popen(['sudo','java','-jar','FuckNeulionV2.3.jar',grabGameId(),homeOrAway], stdout=subprocess.PIPE, stderr=None)
+streamUrl = subprocess.Popen(['sudo','java','-jar','FuckNeulionV2.3.jar',gameIdDigits,homeOrAway], stdout=subprocess.PIPE, stderr=None)
 
 # Grab URL from standard output of FNeulion stream 
 i = 0
