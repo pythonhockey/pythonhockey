@@ -1,0 +1,28 @@
+﻿pythonhockey
+
+pythonhockey is a command-line interface tool that automates the use of FNeulion using Python3 and the command line. pythonhockey is licensed under GPLv3.
+
+DISCLAIMER:
+pythonhockey was written solely as an educational tool to practice web parsing and regular expression statements. It should not be used to watch streams that you are not authorized to watch. pythonhockey is not responsible for any damage this program may cause.
+
+pythonhockey is written using Python3.4.
+
+HOW IT WORKS:
+
+pythonhockey takes one command-line argument, team name (i.e. flyers, canadiens, kings). The web parser will grab the Game ID and the link for the home or away feed, depending on if the team is the home or away team. After getting the correct link and activating FNeulion, the application will open VLC and the stream should begin playing.
+
+SETUP
+
+The FuckNeulionV2.3.jar file must exist in the same folder as this Python application, or it won't be able to complete the necessary steps to open the stream. FNeulion must be found from other sources. The pythonhockey author is not involved in any way with FNeulion.
+
+SYNTAX EXAMPLE
+
+./neulionscraper.py islanders
+
+CURRENT RESTRICTIONS AND IMPORTANT NOTES
+
+Requests module: The program requires the third-party module called 'requests'. It can be installed from the command-line by typing 'pip3 install requests'.
+
+Java issues: At the beginning of the program, the application kills all running Java instances to prevent bind errors from previous runs. If you use Java for other things simultaneously, this could cause serious issues for you. You should disable the automatic killing of all Java pids by commenting out this command in the program.
+
+Admin rights: The program assumes that your user is a member of the sudo group. 
