@@ -9,7 +9,9 @@ pythonhockey is written using Python3.4.
 
 HOW IT WORKS:
 
-pythonhockey takes one command-line argument, team name (i.e. flyers, canadiens, kings). The web parser will grab the Game ID and the link for the home or away feed, depending on if the team is the home or away team. After getting the correct link and activating FNeulion, the application will open VLC and the stream should begin playing.
+pythonhockey takes up to two command-line arguments, team name (i.e. flyers, canadiens, kings) and stream quality (800, 1600, 3000, 4500, 5000). The web parser will grab the Game ID and the link for the home or away feed, depending on if the team is the home or away team. 
+
+After getting the correct link and activating FNeulion, the application will open VLC and the stream should begin playing at the quality you entered. If you did not specify a stream quality, or if you enter an invalid stream quality, it will attempt to start the stream at the default quality.
 
 SETUP
 
@@ -17,7 +19,11 @@ The FuckNeulionV2.3.jar file must exist in the same folder as this Python applic
 
 SYNTAX EXAMPLE
 
-./neulionscraper.py islanders
+For default stream quality:
+./pythonhockey.py islanders
+
+To specify stream quality (valid options: 800, 1600, 3000, 4500, 5000):
+./pythonhockey.py islanders 4500
 
 CURRENT RESTRICTIONS AND IMPORTANT NOTES
 
