@@ -25,7 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
 import re, sys, subprocess
-from time import sleep
 
 try:
     import requests
@@ -77,10 +76,19 @@ else:
     mascot = str(sys.argv[1].lower())
 homeOrAway = None
 
+# Bitrate 
+
+if len(sys.argv) == 2:
+    bitrate = None
+elif sys.argv[2] not in ('800', '1600', '3000', '4500', '5000'):
+    print('You did not select a valid bitrate. Valid bitrates are 800, 1600, 3000, 4500, and 5000.\n**Attempting to start stream at default quality.**')
+    bitrate = None
+else:
+    bitrate = str(sys.argv[2])
+
 # Kill previous java instances
 
 subprocess.call(['sudo','pkill','java'], stdout=None, stderr=None)
-#sleep(10)
 
 # Open NHLstream subreddit, search for team name (mascot), open link
 
@@ -114,6 +122,10 @@ while i < 2:
     url = streamUrl.stdout.readline()
     i += 1
 url = url.decode(encoding='UTF-8').strip()
+if len(sys.argv) == 2 or sys.argv[2] not in ('800', '1600', '3000', '4500', '5000'):
+    pass
+else:
+    url = url.replace('ipad', bitrate)
 
 if sys.platform == 'linux' or sys.platform == 'linux2':
     vlc = subprocess.Popen(['/usr/bin/vlc',url], stdout=None, stderr=None)
