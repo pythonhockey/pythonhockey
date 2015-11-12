@@ -58,15 +58,9 @@ def gameIdForFneulion():
     except:
         pass
     fneulion = re.compile(r'Game ID for FNeulion:\s?\d{9,}')
-    mo2 = fneulion.search(findID.text)
-    return mo2.group()
-
-# Get Game ID from string
-
-def grabGameId():
-    gameId = re.compile(r'(\d)+')
-    mo3 = gameId.search(gameIdString)
-    return mo3.group()
+    fneulion_mo = fneulion.search(findID.text)
+    gameID = re.sub('Game ID for FNeulion: ', '', fneulion_mo.group())
+    return gameID
 
 ## BEGIN PROGRAM ##
 
@@ -109,13 +103,11 @@ else:
 gameThread = selectTeam(mascot)
 
 gameIdString = gameIdForFneulion()
-
-gameIdDigits = grabGameId()
-print(gameIdDigits)
+print(gameIdString)
 
 # Launch FNeulion
 
-streamUrl = subprocess.Popen(['sudo','java','-jar','FuckNeulionV2.3.jar',gameIdDigits,homeOrAway], stdout=subprocess.PIPE, stderr=None)
+streamUrl = subprocess.Popen(['sudo','java','-jar','FuckNeulionV2.3.jar',gameIdString,homeOrAway], stdout=subprocess.PIPE, stderr=None)
 
 # Grab URL from standard output of FNeulion stream 
 i = 0
