@@ -111,6 +111,7 @@ gameThread = selectTeam(mascot)
 gameIdString = gameIdForFneulion()
 
 gameIdDigits = grabGameId()
+print(gameIdDigits)
 
 # Launch FNeulion
 
