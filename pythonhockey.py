@@ -53,7 +53,6 @@ def subredditText():
     except:
         pass
     return subreddit
-subreddit = subredditText()
 
 # Regex of game thread url
 def selectTeam(mascot):
@@ -82,8 +81,9 @@ def gameIdForFneulion():
 
 ## BEGIN PROGRAM ##
 
+subreddit = subredditText()
+
 if sys.argv[1].lower() == 'schedule':
-    subredditText()
     print(activeGames())
     sys.exit()
 elif sys.argv[1].lower() == 'mapleleafs' or sys.argv[1].lower() == 'maple_leafs':
@@ -107,8 +107,6 @@ else:
 subprocess.call(['sudo','pkill','java'], stdout=None, stderr=None)
 
 # Open NHLstream subreddit, search for team name (mascot), open link
-
-subredditText()
 
 beforeAt = re.compile(r'Game Thread: %s at' % mascot.title())
 beforeAtMo = beforeAt.search(subreddit.text)
