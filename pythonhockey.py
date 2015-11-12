@@ -36,8 +36,26 @@ except ImportError:
         sys.stderr.write("You must install \'requests\' module. Go back to Terminal and type \'pip3 install requests\'\n")
         sys.exit(1)
 
-# Regex of game thread url
+# Print schedule of active games
+def activeGames():
+    scheduleRE = re.compile(r'Game Thread: [\w\s]+at[\w\s\d\:]+ET')
+    scheduleMO = scheduleRE.findall(subreddit.text)
+    schedule1 = '\n'.join(scheduleMO)
+    schedule = re.sub('Game Thread: ', '', schedule1)
+    return schedule
 
+# Request subreddit text
+def subredditText():
+    try:
+        subreddit = requests.get('https://www.reddit.com/r/NHLStreams/')
+        while subreddit.status_code != 200:
+            subreddit = requests.get('https://www.reddit.com/r/NHLStreams/')
+    except:
+        pass
+    return subreddit
+subreddit = subredditText()
+
+# Regex of game thread url
 def selectTeam(mascot):
     findLink = re.compile(r'/r/NHLStreams/comments/(\w)+/game_thread(\w)+%s(\w)+_et/' % mascot)
     mo1 = findLink.search(subreddit.text)
@@ -64,7 +82,11 @@ def gameIdForFneulion():
 
 ## BEGIN PROGRAM ##
 
-if sys.argv[1].lower() == 'mapleleafs' or sys.argv[1].lower() == 'maple_leafs':
+if sys.argv[1].lower() == 'schedule':
+    subredditText()
+    print(activeGames())
+    sys.exit()
+elif sys.argv[1].lower() == 'mapleleafs' or sys.argv[1].lower() == 'maple_leafs':
     mascot = 'leafs'
 else:
     mascot = str(sys.argv[1].lower())
@@ -86,12 +108,7 @@ subprocess.call(['sudo','pkill','java'], stdout=None, stderr=None)
 
 # Open NHLstream subreddit, search for team name (mascot), open link
 
-try:
-    subreddit = requests.get('https://www.reddit.com/r/NHLStreams/')
-    while subreddit.status_code != 200:
-        subreddit = requests.get('https://www.reddit.com/r/NHLStreams/')
-except:
-    pass
+subredditText()
 
 beforeAt = re.compile(r'Game Thread: %s at' % mascot.title())
 beforeAtMo = beforeAt.search(subreddit.text)
