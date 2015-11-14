@@ -13,6 +13,8 @@ pythonhockey takes up to two command-line arguments, team name (i.e. flyers, can
 
 After getting the correct link and activating FNeulion, the application will open VLC and the stream should begin playing at the quality you entered. If you did not specify a stream quality, or if you enter an invalid stream quality, it will attempt to start the stream at the default quality.
 
+If you simply want to see what games are currently playing (or are about to start) and their start times, you can pass the 'schedule' argument.
+
 SETUP
 
 The FuckNeulionV2.3.jar file must exist in the same folder as this Python application, or it won't be able to complete the necessary steps to open the stream. FNeulion must be found from other sources. The pythonhockey author is not involved in any way with FNeulion.
@@ -24,6 +26,9 @@ For default stream quality:
 
 To specify stream quality (valid options: 800, 1600, 3000, 4500, 5000):
 ./pythonhockey.py islanders 4500
+
+To print currently active games (or soon to start games):
+./pythonhockey.py schedule
 
 CURRENT RESTRICTIONS AND IMPORTANT NOTES
 
